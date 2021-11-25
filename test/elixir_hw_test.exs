@@ -1,4 +1,5 @@
 defmodule ElixirHwTest do
   use ExUnit.Case
-  doctest Hello
+  doctest HW.Hello
+  doctest HW.ListHelper
 end

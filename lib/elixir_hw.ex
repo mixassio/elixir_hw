@@ -1,4 +1,4 @@
-defmodule Hello do
+defmodule HW.Hello do
   @moduledoc """
   docs inside module
   """
@@ -7,7 +7,7 @@ defmodule Hello do
   @doc """
   func with parameters
   ## Examples
-      iex> Hello.world("Misha")
+      iex> HW.Hello.world("Misha")
       "Hello Misha"
   """
   @spec world(charlist()) :: charlist()
@@ -16,7 +16,7 @@ defmodule Hello do
   @doc """
   func with default param
   ## Examples
-      iex> Hello.world()
+      iex> HW.Hello.world()
       "Hello world"
   """
   @spec world() :: charlist()
