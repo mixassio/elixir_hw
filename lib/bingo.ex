@@ -13,6 +13,13 @@ defmodule AdventCode do
   def resultWin([]), do: {:nowin, []}
   def resultWin(matrixWin), do: {:win, matrixWin}
 
+  def filterWinMatrix([matrix], matrix, [cur | _]), do: {matrix, cur}
+  def filterWinMatrix(gameMap, matrix, moveList) do
+    gameMap
+      |> Enum.filter(fn mtrx -> matrix != mtrx end)
+      |> game(moveList)
+  end
+
   def checkWinner(gameMap) do
     gameMap
     |> Enum.filter(fn matrix -> ["x", "x", "x", "x", "x"] in matrix end)
@@ -28,14 +35,14 @@ defmodule AdventCode do
         Enum.map(l, fn
           els ->
             Enum.map(els, fn
-              el when el == move -> "x"
+              ^move -> "x"
               el -> el
             end)
         end)
       end)
 
     case checkWinner(newGameMap) do
-      {:win, [matrixWin | _]} -> {matrixWin, move}
+      {:win, [matrixWin | _]} ->  filterWinMatrix(newGameMap, matrixWin, moveList)#-> {matrixWin, move} part 1
       {:nowin, _} -> game(newGameMap, tail)
     end
   end
@@ -62,3 +69,5 @@ defmodule AdventCode do
     |> then(fn x -> x / 2 * String.to_integer(currentMove) end)
   end
 end
+
+IO.inspect(AdventCode.bingo("./file5"))
