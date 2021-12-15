@@ -28,10 +28,19 @@ defmodule SyntaxScoring do
       |> Stream.map(&String.trim/1)
       |> Stream.map(&String.split(&1, "", trim: true))
       |> Enum.map(&get_penalty(&1))
-      |> Enum.map(& elem(&1, 0))
-      |> Enum.sum()
 
-    IO.inspect(result, limit: :infinity)
+    result
+      |> Enum.map(& elem(&1, 0))
+      |> Enum.sum() # answer part1
+
+    penalty = %{"(" => 1, "[" => 2, "{" => 3, "<" => 4}
+
+    result
+      |> Enum.filter(& elem(&1, 0) == 0)
+      |> Enum.map(& elem(&1, 1) |> Enum.reduce(0, fn x, acc -> acc * 5 + penalty[x] end))
+      |> Enum.sort()
+      |> List.to_tuple()
+      |> then(fn x -> elem(x, div(tuple_size(x), 2)) end) #answer part2
   end
 end
 
