@@ -39,7 +39,6 @@ defmodule Octopus do
           {current_value, neighbours, counter, coords, lights?}
 
         {:add, storePIDs} ->
-          # return???
           addEnergy(current_value, neighbours, counter, coords, lights?, storePIDs)
 
         {:reload, _} -> checkState({current_value, neighbours, counter, coords, lights?})
@@ -63,11 +62,9 @@ defmodule Octopus do
   end
 
   def addEnergy(current_value, neighbours, counter, coords,  :false, _) do
-    IO.inspect({current_value, neighbours, counter, coords}, label: :addEnergySimple)
     {current_value + 1, neighbours, counter, coords, :false}
   end
   def addEnergy(current_value, neighbours, counter, coords,  :true, _) do
-    IO.inspect({current_value, neighbours, counter, coords}, label: :addEnergySimple)
     {current_value, neighbours, counter, coords, :true}
   end
 
@@ -104,7 +101,6 @@ defmodule Octopus do
         Process.sleep(10)
         pid
       end)
-      |> IO.inspect(label: :check)
       |> Enum.map(fn pid ->
         Octopus.reload(pid)
         Process.sleep(10)
@@ -118,9 +114,6 @@ defmodule Octopus do
     |> Enum.map(fn {_, counter, _} -> counter end)
     |> Enum.sum()
 
-    # IO.inspect(storePIDs)
-
-    # Octopus.value(Map.get(storePIDs, "22", 3))
   end
 end
 
