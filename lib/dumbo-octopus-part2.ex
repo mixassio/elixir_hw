@@ -144,33 +144,6 @@ defmodule Octopus do
         Map.put(acc, key, pid)
       end)
 
-    # part 1
-    # 1..steps
-    # |> Enum.map(fn _ ->
-    #   storePIDs
-    #   |> Map.values()
-    #   |> Enum.map(fn pid ->
-    #     Octopus.add(pid, storePIDs)
-    #     Process.sleep(10)
-    #     pid
-    #   end)
-    #   |> Enum.map(fn pid ->
-    #     current = Octopus.reload(pid)
-    #     Process.sleep(10)
-    #     current
-    #   end)
-    #   |> IO.inspect(label: :current_state)
-    # end)
-
-    # storePIDs
-    # |> Map.values()
-    # |> Enum.map(fn pid -> Octopus.value(pid) end)
-    # |> Enum.filter(fn {_, _, x} -> x != {0, 0} end)
-    # |> Enum.map(fn {_, counter, _} -> counter end)
-    # |> Enum.sum()
-
-    # end part 1
-
     whileLoop(1, storePIDs)
   end
 end
