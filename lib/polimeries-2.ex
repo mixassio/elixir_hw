@@ -1,4 +1,4 @@
-defmodule Polimeries do
+defmodule Polimeries2 do
   @spec run(binary(), non_neg_integer()) :: non_neg_integer()
   def run(file, steps \\ 10) do
     pairs =
@@ -32,4 +32,4 @@ defmodule Polimeries do
   end
 end
 
-IO.inspect(Polimeries.run("./file18", 40))
+IO.inspect(Polimeries2.run("./file18", 40))
